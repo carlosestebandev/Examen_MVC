@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Examen_UPC_MVC_Carlos_Ramos.Models.TbSolicitud>
+
+@{
+    ViewData["Title"] = "Consulta de Solicitud";
+    Examen_UPC_MVC_Carlos_Ramos.Models.TbSolicitud Solicitud = new Examen_UPC_MVC_Carlos_Ramos.Models.TbSolicitud();
+}
+
+<h1>Consulta de Solicitud</h1>
+
+<p>
+    <a asp-action="Create">Crear Nueva</a>
+</p>
+
+
+<form asp-action="ConsultaSolicitud">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="control-label">Periodo</label>
+                <input name="periodo" asp-for="@Solicitud.Periodo" class="form-control" />
+                <span asp-validation-for="@Solicitud.Periodo" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="control-label">Fecha</label>
+                <input name="fecha" asp-for="@Solicitud.FechaSolicitud" class="form-control" />
+                <span asp-validation-for="@Solicitud.FechaSolicitud" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="control-label">Nombre o Id</label>
+                <input name="nombreAlumno" asp-for="@Solicitud.IdAlumnoNavigation.Nombres" class="form-control" />
+                <span asp-validation-for="@Solicitud.IdAlumnoNavigation.Nombres" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="form-group">
+                <label class="control-label"> </label>
+                <input type="submit" value="Buscar" class="btn btn-primary btn-block" />
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdAlumnoNavigation.Nombres)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaSolicitud)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodRegistrante)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Carrera)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Periodo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdAlumnoNavigation.Nombres) @Html.DisplayFor(modelItem => item.IdAlumnoNavigation.Apellidos)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaSolicitud, "ShortDateString")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CodRegistrante)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Carrera)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Periodo)
+                </td>
+                <td>
+                    
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>
